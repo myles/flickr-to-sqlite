@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "flickr-to-sqlite"
+version = "0.1.0"
+description = "Save data from Flickr to a SQLite database"
+authors = ["Myles Braithwaite <me@mylesbraithwaite.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+packages = [{include = "flickr_to_sqlite"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+click = "^8.1.3"
+sqlite-utils = "^3.30"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.12.0"
+isort = "^5.11.4"
+mypy = "^0.991"
+pytest = "^7.2.0"
+pytest-cov = "^4.0.0"
+pytest-mock = "^3.10.0"
+responses = "^0.22.0"
+ruff = "^0.0.254"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+flickr-to-sqlite = "flickr_to_sqlite.cli:cli"
+
+[tool.ruff]
+line-length = 80
+
+[tool.black]
+line-length = 80
+
+[tool.isort]
+profile = "black"
