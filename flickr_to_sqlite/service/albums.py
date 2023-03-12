@@ -67,7 +67,7 @@ def save_albums(db: Database, *, albums: List[Dict[str, Any]]):
     Save Flickr albums to the SQLite database.
     """
     table_albums = get_table("albums", db=db)
-    table_photos_albums = get_table("photo_albums", db=db)
+    table_photos_albums = get_table("photos_albums", db=db)
 
     albums_photos_records = []
     for album in albums:
