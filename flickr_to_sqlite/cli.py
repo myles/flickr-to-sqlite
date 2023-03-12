@@ -3,6 +3,7 @@ from typing import Tuple
 
 import click
 
+from .service.albums import extract_albums_metadata_from_zip_files, save_albums
 from .service.database import build_database, open_database
 from .service.photos_metadata import (
     extract_photos_metadata_from_zip_files,
@@ -34,7 +35,7 @@ def cli():
     ),
     required=True,
 )
-def photos_metadata(db_path: Path, zip_file_paths: Tuple[Path, ...]):
+def account(db_path: Path, zip_file_paths: Tuple[Path, ...]):
     """
     Save data from Flickr Data's account data to the SQLite database.
     """
@@ -43,3 +44,6 @@ def photos_metadata(db_path: Path, zip_file_paths: Tuple[Path, ...]):
 
     for photos in extract_photos_metadata_from_zip_files(zip_file_paths):
         save_photos_metadata(db, photos=photos)
+
+    for albums in extract_albums_metadata_from_zip_files(zip_file_paths):
+        save_albums(db, albums=albums)

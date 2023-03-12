@@ -6,14 +6,14 @@ from zipfile import ZipFile
 from sqlite_utils import Database
 
 from .database import get_table
-from .utils import transform_datetime
+from .utils import transform_timestamp
 
 
 def extract_photos_metadata_from_zip_file_obj(
     zip_file_obj: ZipFile,
 ) -> List[Dict[str, Any]]:
     """
-    Extract the Photos' metadata from the ZIP file.
+    Extract the photos' metadata from the ZIP file.
     """
     photos = []
 
@@ -35,7 +35,7 @@ def extract_photos_metadata_from_zip_files(
     zip_file_paths: Tuple[Path, ...],
 ) -> Generator[List[Dict[str, Any]], None, None]:
     """
-    Extract the Photos' metadata from multiple ZIP files.
+    Extract the photos' metadata from multiple ZIP files.
     """
     for zip_file_path in zip_file_paths:
         with ZipFile(zip_file_path) as zip_file_obj:
@@ -48,8 +48,8 @@ def transform_photo(photo: Dict[str, Any]):
     SQLite database.
     """
     # Transform the string timestamps into datetime objects.
-    photo["date_taken_at"] = transform_datetime(photo["date_taken"])
-    photo["date_imported_at"] = transform_datetime(photo["date_imported"])
+    photo["date_taken_at"] = transform_timestamp(photo["date_taken"])
+    photo["date_imported_at"] = transform_timestamp(photo["date_imported"])
 
     photo["photo_page_url"] = photo["photopage"]
     photo["original_photo_url"] = photo["original"]

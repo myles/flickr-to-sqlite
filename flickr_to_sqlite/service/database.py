@@ -23,7 +23,7 @@ def build_database(db: Database):
     """
     table_albums = get_table("albums", db=db)
     table_photos = get_table("photos", db=db)
-    table_photos_albums = get_table("photo_albums", db=db)
+    table_photos_albums = get_table("photos_albums", db=db)
 
     if table_photos.exists() is False:
         table_photos.create(
@@ -48,7 +48,7 @@ def build_database(db: Database):
                 "description": str,
                 "url": str,
                 "created_at": datetime.datetime,
-                "last_updated_at": datetime.datetime,
+                "updated_at": datetime.datetime,
             },
             pk="id",
         )
