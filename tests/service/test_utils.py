@@ -1,6 +1,6 @@
 import datetime
 import pytest
-from flickr_to_sqlite import utils
+from flickr_to_sqlite.service import utils
 
 
 @pytest.mark.parametrize(
