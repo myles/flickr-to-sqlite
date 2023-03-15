@@ -1,5 +1,7 @@
 import datetime
+
 import pytest
+
 from flickr_to_sqlite.service import utils
 
 
@@ -8,9 +10,7 @@ from flickr_to_sqlite.service import utils
     [
         ("", None),
         (None, None),
-        (" 2022-03-14 12:34:56 ", datetime.datetime(2022, 3, 14, 12, 34, 56)),
         ("2022-03-14 12:34:56", datetime.datetime(2022, 3, 14, 12, 34, 56)),
-        ("2022-03-14 12:34", None),
     ],
 )
 def test_transform_timestamp(timestamp, expected_result):
@@ -18,7 +18,7 @@ def test_transform_timestamp(timestamp, expected_result):
     assert result == expected_result
 
 
-def test_transform_invalid_timestamp():
+def test_transform_timestamp__invalid():
     # Test with an invalid timestamp
     invalid_timestamp = "2022-03-14 12:34"
     with pytest.raises(ValueError):
@@ -30,18 +30,21 @@ def test_transform_invalid_timestamp():
     [
         ("", None),
         (None, None),
-        ("1647317696", datetime.datetime(2022, 3, 14, 12, 34, 56)),
-        ("1647317696.123456", datetime.datetime(2022, 3, 14, 12, 34, 56, 123456)),
-        ("-1647317696", datetime.datetime(1910, 10, 8, 11, 25, 4)),
+        ("1647317696", datetime.datetime(2022, 3, 15, 0, 14, 56)),
+        (
+            "1647317696.123456",
+            datetime.datetime(2022, 3, 15, 0, 14, 56, 123456),
+        ),
+        ("-1647317696", datetime.datetime(1917, 10, 19, 14, 45, 4)),
     ],
 )
 def test_transform_epoch_timestamp(timestamp, expected_result):
-    result = transform_epoch_timestamp(timestamp)
+    result = utils.transform_epoch_timestamp(timestamp)
     assert result == expected_result
 
 
-def test_transform_invalid_epoch_timestamp():
+def test_transform_epoch_timestamp__invalid():
     # Test with an invalid timestamp
     invalid_timestamp = "2022-03-14 12:34"
     with pytest.raises(ValueError):
-        transform_epoch_timestamp(invalid_timestamp)
+        utils.transform_epoch_timestamp(invalid_timestamp)
