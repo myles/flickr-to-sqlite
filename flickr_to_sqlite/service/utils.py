@@ -1,6 +1,8 @@
 import datetime
 from typing import Optional
 
+import pytz
+
 
 def transform_timestamp(value: Optional[str]) -> Optional[datetime.datetime]:
     """
@@ -13,7 +15,7 @@ def transform_timestamp(value: Optional[str]) -> Optional[datetime.datetime]:
     if value.strip() == "":
         return None
 
-    return datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
+    return datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S").replace(tzinfo=pytz.UTC)
 
 
 def transform_epoch_timestamp(
@@ -29,4 +31,4 @@ def transform_epoch_timestamp(
     if value.strip() == "":
         return None
 
-    return datetime.datetime.fromtimestamp(float(value))
+    return datetime.datetime.fromtimestamp(float(value), tz=pytz.UTC)

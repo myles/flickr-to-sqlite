@@ -1,5 +1,7 @@
 import datetime
 
+import pytz
+
 from flickr_to_sqlite.service import photos_metadata
 
 from ..fixtures import FLICKR_PHOTO_ONE
@@ -8,10 +10,10 @@ from ..fixtures import FLICKR_PHOTO_ONE
 def test_transform_photo():
     photo = FLICKR_PHOTO_ONE.copy()
 
-    expected_date_taken_at = datetime.datetime(2023, 1, 1)
+    expected_date_taken_at = datetime.datetime(2023, 1, 1, tzinfo=pytz.UTC)
     photo["date_taken"] = expected_date_taken_at.strftime("%Y-%m-%d %H:%M:%S")
 
-    expected_date_imported_at = datetime.datetime(2023, 1, 2)
+    expected_date_imported_at = datetime.datetime(2023, 1, 2, tzinfo=pytz.UTC)
     photo["date_imported"] = expected_date_imported_at.strftime(
         "%Y-%m-%d %H:%M:%S"
     )
