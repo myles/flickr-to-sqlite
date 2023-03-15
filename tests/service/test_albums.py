@@ -7,10 +7,10 @@ from ..fixtures import FLICKR_ALBUM_ONE
 def test_transform_album():
     album = FLICKR_ALBUM_ONE.copy()
 
-    expected_created_at = datetime.datetime.now()
+    expected_created_at = datetime.datetime(2023, 1, 1)
     album["created"] = expected_created_at.timestamp()
 
-    expected_updated_at = datetime.datetime.now()
+    expected_updated_at = datetime.datetime(2023, 2, 1)
     album["last_updated"] = expected_updated_at.timestamp()
 
     albums.transform_album(album)
