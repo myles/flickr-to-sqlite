@@ -11,7 +11,9 @@ FLICKR_PHOTO_ONE = {
     "rotation": 0,
     "date_imported": "2013-09-12 16:37:56",
     "photopage": "https://www.flickr.com/photos/mylesbraithwaite/9732128037/",
-    "original": "https://live.staticflickr.com/3741/9732128037_c5ac986ac2_o.jpg",
+    "original": (
+        "https://live.staticflickr.com/3741/9732128037_c5ac986ac2_o.jpg"
+    ),
     "license": "Attribution-NonCommercial-ShareAlike License",
     "geo": [
         {"latitude": "43722273", "longitude": "-79410638", "accuracy": "16"}
@@ -67,13 +69,22 @@ FLICKR_PHOTO_ONE = {
 FLICKR_ALBUM_ONE = {
     "photo_count": "10",
     "id": "72157697354068115",
-    "url": "https://www.flickr.com/photos/mylesbraithwaite/albums/72157697354068115",
+    "url": (
+        "https://www.flickr.com/photos/mylesbraithwaite/albums"
+        "/72157697354068115"
+    ),
     "title": "Allis-Chalmers D17",
-    "description": '<a href="http://www.tractordata.com/farm-tractors/000/0/1/18-allis-chalmers-d17.html" rel="nofollow">www.tractordata.com/farm-tractors/000/0/1/18-allis-chalme...</a>',
+    "description": (
+        '<a href="http://www.tractordata.com/farm-tractors/000/0/1/18-allis-ch'
+        'almers-d17.html" rel="nofollow">www.tractordata.com/farm-tractors/000'
+        "/0/1/18-allis-chalme...</a>"
+    ),
     "view_count": "6",
     "created": "1527514138",
     "last_updated": "1527514146",
-    "cover_photo": "https://www.flickr.com/photos/mylesbraithwaite/28535079478",
+    "cover_photo": (
+        "https://www.flickr.com/photos/mylesbraithwaite/28535079478"
+    ),
     "photos": [
         "28535079478",
         "42358286222",

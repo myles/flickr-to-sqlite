@@ -21,8 +21,8 @@ def build_database(db: Database):
     """
     Build the Flickr SQLite database structure.
     """
-    table_albums = get_table("albums", db=db)
     table_photos = get_table("photos", db=db)
+    table_albums = get_table("albums", db=db)
     table_photos_albums = get_table("photos_albums", db=db)
 
     if table_photos.exists() is False:
@@ -39,6 +39,7 @@ def build_database(db: Database):
             },
             pk="id",
         )
+        table_photos.enable_fts(["name", "description"], create_triggers=True)
 
     if table_albums.exists() is False:
         table_albums.create(
@@ -52,6 +53,7 @@ def build_database(db: Database):
             },
             pk="id",
         )
+        table_albums.enable_fts(["title", "description"], create_triggers=True)
 
     if table_photos_albums.exists() is False:
         table_photos_albums.create(
@@ -65,3 +67,11 @@ def build_database(db: Database):
                 ("album_id", "albums", "id"),
             ),
         )
+
+    table_photos_albums_indexes = {
+        tuple(i.columns) for i in table_photos_albums.indexes
+    }
+    if ("photo_id",) not in table_photos_albums_indexes:
+        table_photos_albums.create_index(["photo_id"])
+    if ("album_id",) not in table_photos_albums_indexes:
+        table_photos_albums.create_index(["album_id"])

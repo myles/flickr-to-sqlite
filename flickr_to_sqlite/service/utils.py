@@ -1,18 +1,23 @@
 import datetime
 from typing import Optional
 
+import pytz
+
 
 def transform_timestamp(value: Optional[str]) -> Optional[datetime.datetime]:
     """
     Transform a Flickr's string formatted timestamp into a Python datetime
     object.
     """
-    # If the value is an empty string or None then we just want to return
-    # early.
-    if value.strip() in (None, ""):
+    if value is None:
         return None
 
-    return datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
+    if value.strip() == "":
+        return None
+
+    return datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S").replace(
+        tzinfo=pytz.UTC
+    )
 
 
 def transform_epoch_timestamp(
@@ -22,9 +27,10 @@ def transform_epoch_timestamp(
     Transform a Flickr's epoch string formatted timestamp into a Python
     datetime object.
     """
-    # If the value is an empty string or None then we just want to return
-    # early.
-    if value.strip() in (None, ""):
+    if value is None:
         return None
 
-    return datetime.datetime.fromtimestamp(int(value))
+    if value.strip() == "":
+        return None
+
+    return datetime.datetime.fromtimestamp(float(value), tz=pytz.UTC)
