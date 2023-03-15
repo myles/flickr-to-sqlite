@@ -15,7 +15,9 @@ def transform_timestamp(value: Optional[str]) -> Optional[datetime.datetime]:
     if value.strip() == "":
         return None
 
-    return datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S").replace(tzinfo=pytz.UTC)
+    return datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S").replace(
+        tzinfo=pytz.UTC
+    )
 
 
 def transform_epoch_timestamp(
