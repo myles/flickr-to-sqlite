@@ -1,6 +1,7 @@
 import datetime
 
 from flickr_to_sqlite.service import albums
+
 from ..fixtures import FLICKR_ALBUM_ONE
 
 

@@ -1,6 +1,7 @@
 import datetime
 
 from flickr_to_sqlite.service import photos_metadata
+
 from ..fixtures import FLICKR_PHOTO_ONE
 
 
@@ -11,7 +12,9 @@ def test_transform_photo():
     photo["date_taken"] = expected_date_taken_at.strftime("%Y-%m-%d %H:%M:%S")
 
     expected_date_imported_at = datetime.datetime(2023, 1, 2)
-    photo["date_imported"] = expected_date_imported_at.strftime("%Y-%m-%d %H:%M:%S")
+    photo["date_imported"] = expected_date_imported_at.strftime(
+        "%Y-%m-%d %H:%M:%S"
+    )
 
     photos_metadata.transform_photo(photo)
     assert photo == {
